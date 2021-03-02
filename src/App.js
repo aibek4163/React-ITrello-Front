@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { NavBar } from "./Components/Navbar";
+import { Home } from "./Components/MainBody";
+import { EditItem } from "./Components/EditItem";
+import { EditTask } from "./Components/EditTask";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar />
+      <Switch>
+        <Route path="/login">
+          <h1>Login Page</h1>
+        </Route>
+        <Route path={`/editCard/:id`}>
+          <EditItem />
+        </Route>
+        <Route path={`/editTask/:task_id/:card_id`}>
+          <EditTask />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </div>
   );
 }
